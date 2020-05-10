@@ -1,0 +1,15 @@
+{
+  "name": "encoding-module",
+  "version": "0.0.1",
+  "description": "\"# Encoding-module\"",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliaamKing/Encoding-module.git"
+  },
+  "author": "dmitriy shmaliuk <dmitriy.shmaliuk@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WilliaamKing/Encoding-module/issues"
+  },
+  "homepage": "https://github.com/WilliaamKing/Encoding-module#readme"
+}
