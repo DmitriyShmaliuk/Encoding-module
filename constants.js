@@ -38,7 +38,7 @@ export const MORSE_ALPHABET = {
     ' ': ' '
 }
 
-const CODING_SYMBOLS = [
+export const CODING_SYMBOLS = [
     'a',
     'b',
     'c',
