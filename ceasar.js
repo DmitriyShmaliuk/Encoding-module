@@ -4,29 +4,25 @@ String.prototype.filter = Array.prototype.filter;
 String.prototype.map = Array.prototype.map;
 
 export function encoding (str, key) {
-    const cleanStr = deleteExtraSymbols (str).toLowerCase();
-    return getEncodedString (cleanStr, key); 
-}
-
-function deleteExtraSymbols (str) {
-    return str.filter((symbol) => CODING_SYMBOLS.indexOf(symbol) !== -1).join('');
+    const lowerCaseStr = str.toLowerCase();
+    return getEncodedString (lowerCaseStr, key); 
 }
 
 function getEncodedString (str, key){
     return str.map (symbol => {
-        if (isSpace(symbol)){
-            return symbol;
-        }
-        else {
+        if (isSpecialSymbol(symbol)){
             const currentSymbolIndex = CODING_SYMBOLS.indexOf(symbol);
             const newSymbolIndex = calculateNewSymbolIndex(currentSymbolIndex, key, CODING_SYMBOLS.length);
             return CODING_SYMBOLS[newSymbolIndex];
         }
+        else {
+            return symbol;   
+        }
     }).join('');
 }
 
-function isSpace (symbol) {
-    return symbol === ' ';
+function isSpecialSymbol (symbol) {
+    return CODING_SYMBOLS.indexOf(symbol) !== -1;
 }
 
 function calculateNewSymbolIndex (symbolIndex, key, codingSymbolsCount) {
@@ -46,9 +42,9 @@ function isSumInAllowableRange (sum, length) {
 }
 
 export function decoding (str, key) {
-    const cleanStr = deleteExtraSymbols (str).toLowerCase();
+    const lowerCaseStr = str.toLowerCase();
     const offset = getOffset(key, CODING_SYMBOLS.length);
-    return getDecodedString (cleanStr, offset);
+    return getDecodedString (lowerCaseStr, offset);
 }
 
 function getOffset (key, codingSymbolsCount) {
@@ -58,14 +54,13 @@ function getOffset (key, codingSymbolsCount) {
 
 function getDecodedString (str, offset) {
     return str.map ((symbol) => {
-        if (isSpace(symbol)){
-            return symbol;
-        }
-        else {
+        if (isSpecialSymbol(symbol)){
             const currentSymbolIndex = CODING_SYMBOLS.indexOf(symbol);
             const decodedSymbolIndex = getDecodedSymbolIndex (currentSymbolIndex, offset);
             return CODING_SYMBOLS[decodedSymbolIndex];
-
+        }
+        else {
+            return symbol;
         }
         
     }).join('');
